@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+
+import "./App.css";
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    if (count > 10) {
+      setCount(0);
+      setMessage("WHOA!!! COOL IT WITH ALL THAT COUNTING!");
+    }
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>This is my site</h1>
+      {message ? <h2>{message}</h2> : <h2>this is my count {count}</h2>}
+      <div>
+        <button onClick={() => setCount(count + 1)}>update count</button>
+      </div>
     </div>
   );
 }
